@@ -1,14 +1,36 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Despesas App
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-list>
+    <ion-item-sliding #item *ngFor="let despesa of despesas">
+      <ion-item [hidden]="despesa.deleted">
+        <ion-icon name="{{despesa.icone}}" item-left large>
+        </ion-icon>
+        <h2>{{despesa.nome}}</h2>
+        <p>{{despesa.valor | currency:'BRL':true:'1.2-2' | decimalBr}}</p>
+        <ion-note item-right>{{despesa.data | date: 'dd/MM/yyyy'}}</ion-note>
+        <!-- <ion-icon name="trash" item-right (click)="del(despesa.id)"></ion-icon> -->
+      </ion-item>
+
+      <ion-item-options side="right">
+          <button ion-button color="danger" (click)="del(despesa.id)">Remover</button>
+      </ion-item-options>
+    </ion-item-sliding>
+    
+  </ion-list>
+
+
+  
+<ion-fab right bottom>
+  <button ion-fab color="primary" (click)="add()">
+    <ion-icon name="add" color="light" large></ion-icon>
+  </button>
+</ion-fab>
+
 </ion-content>

@@ -6,20 +6,41 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { AddPage } from '../pages/add/add';
+import { DecimalBrPipe } from '../pipes/decimal-br/decimal-br'
+
+/* LocalStorage */
+import { LocalStorageModule } from 'angular-2-local-storage';
+
+// import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+
+// const cloudSettings: CloudSettings = {
+//   'core': {
+//     'app_id': '81d1d2f1'
+//   }
+// };
+
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    AddPage,
+    DecimalBrPipe
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    LocalStorageModule.withConfig({
+      prefix: 'despesasApp',
+      storageType: 'localStorage'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    AddPage
   ],
   providers: [
     StatusBar,
